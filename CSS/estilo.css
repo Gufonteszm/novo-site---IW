@@ -2,9 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Jersey 15", sans-serif;
     scroll-behavior: smooth;
-   }
+    font-family: sans-serif;
+}
+    
    
    .container {
        max-width: 1200px; 
@@ -13,11 +14,11 @@
    }
    
    body{
-       background-color: #f4f8fa;
+       background-color: #e0e0d6;
    }
    
    header{
-       background-color: #49708a ;
+       background-color:#121210;
        color: #d0e0eb;
        padding: 15px 15px 15px 15px;
        width: 100%;
@@ -55,7 +56,7 @@
    }
    
    .banner{
-       background:url(../img/bannerfinal.png) no-repeat center/cover;
+       background:url(../IMG/banner.jpg) no-repeat center/cover;
        height: 400px;
        display: flex;
        flex-direction: column;
@@ -75,8 +76,8 @@
    
    #sobre{
        padding: 35px;
-       background-color: #f4f8fa;
-       color: #4d3f72 ;
+       background-color: #e0e0d6;
+       color: #0e0a08 ;
    }
    
    .sobre-container{
@@ -157,11 +158,11 @@
    }
    
    #acao .item {
-       background-color: white; 
-       border: 1px solid #ddd; 
+       background-color: #dfdccf; 
+       border: 1px solid #d3d1c5;  
        border-radius: 10px; 
        padding: 20px;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+       box-shadow: 0 4px 8px #c2bfac; 
        transition: transform 0.2s ease, box-shadow 0.2s ease; 
        
        cursor: pointer; 
@@ -180,7 +181,8 @@
    #acao .item p {
        margin-top: 15px; 
        font-size: 1.2em; 
-       color: #4d3f72;
+       color: #0e0a08;
+       text-align: justify;
    }
    
    #acao .imagem img {
@@ -204,14 +206,14 @@
        display: inline-block;
        margin-top: 15px;
        padding: 10px 20px;
-       background: #4d3f72;
+       background: #281205;
        color: white;
        text-decoration: none;
        border-radius: 6px;
        cursor: pointer;
      }
    
-     /* Modal */
+     
    
      .modal {
        margin-top: 50px;
