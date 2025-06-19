@@ -3,8 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: sans-serif;
+    font-family: gabarito;
 }
+
+
     
    
    .container {
@@ -14,12 +16,13 @@
    }
    
    body{
-       background-color: #e0e0d6;
+      background-image: linear-gradient( #3a3a3a, #303030, #262626, #1c1c1c);
+    /*background-image: linear-gradient( #2e2d3a, #272631 , #1e1d26, #17161d, #0f0f13, #08070a);*/
    }
    
    header{
-       background-color:#121210;
-       color: #d0e0eb;
+       background-color:#050505;
+       color: #ffffff;
        padding: 15px 15px 15px 15px;
        width: 100%;
        top: 0;
@@ -56,19 +59,26 @@
    }
    
    .banner{
-       background:url(../IMG/banner.jpg) no-repeat center/cover;
-       height: 400px;
+       background:url(../IMG/banner/banner3.png) no-repeat center/cover;
+       height: 450px;
        display: flex;
        flex-direction: column;
        margin-top: 90px;
        align-items: flex-start;
        justify-content: center;
        padding-left: 30px; 
-       color: #fff;
-       font-size: 1.3em;
+       color: #000000;
+       font-size: 1.9em;
        text-align:left;
-       text-shadow: 2px 2px 5px #dfe0e5 ;
    }
+
+   .banner-text{
+    background-color: #ffffff48;
+    padding: 10px;
+    
+   }
+
+  
    
    section{
        scroll-margin-top: 100px;
@@ -76,8 +86,9 @@
    
    #sobre{
        padding: 35px;
-       background-color: #e0e0d6;
-       color: #0e0a08 ;
+       color: #110b05;
+       margin-bottom: 50px;
+       background-color: #ffffff;
    }
    
    .sobre-container{
@@ -92,7 +103,12 @@
    .sobre-texto{
        flex: 1;
        padding: 20px;
-   
+       border-style: solid;
+       border-color: #272727;
+       background-color: #f0f0f0;
+       box-shadow: 0 4px 8px #000000;
+       padding: 20px;
+       
    }
    
    .sobre-texto h1{
@@ -131,8 +147,8 @@
    }
    
    .hex{
-       width: 140px;
-       height: 120px;
+       width: 160px;
+       height: 140px;
        clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
        overflow: hidden;
        background-color: #ccc;
@@ -147,25 +163,32 @@
    
    .centraliza{
        text-align: center;
+       color: #dbdbdb;/*050011*/
+       font-size: 3.5em;
+   }
+
+   .centraliza-h3{
+    text-align: center;
+       color: #f0f0f0;/*070016*/
+       font-size: 1.7em; 
    }
    
    #acao .container {
        display: grid; 
        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-       
        text-align: center;
        padding: 50px 0; 
    }
    
    #acao .item {
-       background-color: #dfdccf; 
-       border: 1px solid #d3d1c5;  
-       border-radius: 10px; 
+       background-color: #1b1b1b; 
+       border: 1px solid #060507;  
        padding: 20px;
-       box-shadow: 0 4px 8px #c2bfac; 
+       box-shadow: 0 4px 8px #000000; 
        transition: transform 0.2s ease, box-shadow 0.2s ease; 
-       
+       color: #dbdbdb;
        cursor: pointer; 
+       margin: 7px;
    }
    
    #acao .item:hover {
@@ -177,17 +200,17 @@
        transform: scale(0.98); 
        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); 
    }
-   
+
    #acao .item p {
        margin-top: 15px; 
        font-size: 1.2em; 
-       color: #0e0a08;
-       text-align: justify;
+       color: #f0f0f0;
+       text-align: center;
    }
    
    #acao .imagem img {
        width: 100%; 
-       max-width: 150px; 
+       max-width: 500px; 
        height: auto;
        margin-bottom: 10px; 
    }
@@ -206,8 +229,8 @@
        display: inline-block;
        margin-top: 15px;
        padding: 10px 20px;
-       background: #281205;
-       color: white;
+       background: #832323;
+       color: #ede8ff;
        text-decoration: none;
        border-radius: 6px;
        cursor: pointer;
