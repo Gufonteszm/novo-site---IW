@@ -1,0 +1,475 @@
+
+/* <section id="galeria">
+                <h1 class="galeria-h1">GALERIA DE IMAGENS DO JOGO</h1>
+                <h3 class="galeria-h3">Veja algumas imagens a seguir</h3>
+            <div class="container">
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem1.jpg"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+           
+           <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem2.webp"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem3.webp"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem4.webp"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem5.webp"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem6.jpg"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem7.jpg"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem8.png"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem9.webp"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>
+            
+
+            <div class="item">
+            <div class="imagem"><img src="IMG/galeria/imagem10.jpg"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+            </div>*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: gabarito;
+}
+
+
+    
+   
+   .container {
+       max-width: 1200px; 
+       margin: auto; 
+       padding: 20px; 
+   }
+   
+   body{
+      background-image: linear-gradient( #3a3a3a, #303030, #262626, #1c1c1c);
+   }
+   
+   header{
+       background-color:#050505;
+       color: #ffffff;
+       padding: 9px 15px 15px 15px;
+       width: 100%;
+       top: 0;
+       position: fixed;
+       z-index: 1000;
+   
+   }
+   header .container{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       flex-wrap: wrap;
+   }
+   .logo{
+       font-size: 2em;
+       font-weight: bold;
+       width: 200px;
+       height: 47px;
+   }
+  
+   .logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   }
+   
+   nav ul{
+       list-style: none;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: center;
+   }
+   
+   nav ul li{
+       margin-left: 20px;
+       font-size: 1.5em;
+   }
+   
+   nav ul li a{
+       color: #ebf7f8;
+       text-decoration: none;    
+   }
+   
+   .banner{
+       background:url(../IMG/banner/banner3.png) no-repeat center/cover;
+       height: 450px;
+       display: flex;
+       flex-direction: column;
+       margin-top: 90px;
+       align-items: flex-start;
+       justify-content: center;
+       padding-left: 30px; 
+       color: #000000;
+       font-size: 1.9em;
+       text-align:left;
+   }
+
+   .banner-text{
+    background-color: #ffffff48;
+    padding: 10px;
+    
+   }
+
+  
+   
+   section{
+       scroll-margin-top: 100px;
+   }
+   
+   #sobre{
+       padding: 35px;
+       color: #110b05;
+       margin-bottom: 50px;
+       background-color: #ffffff;
+   }
+   
+   .sobre-container{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       gap: 40px;
+       max-width: 1400px;
+       margin: auto;
+   }
+   
+   .sobre-texto{
+       flex: 1;
+       padding: 20px;
+       border-style: solid;
+       border-color: #e6e6e6;
+       background-color: #f0f0f0;
+       box-shadow: 0 4px 8px #000000;
+       padding: 20px;
+       border-radius: 7px;
+   }
+   
+   .sobre-texto h1{
+    font-size: 1.7;
+    margin-bottom: 20px;
+   }
+   
+   .sobre-texto p{
+       font-size: 1.2em;
+       line-height: 1.5;
+       text-align: justify;
+       margin-top: 10px;
+      }
+   
+   .sobre-texto h2{
+       margin-top: 15px;
+   
+    }
+   
+   .sobre-texto a{
+       color: #4d3f72;
+       text-decoration: none;
+       font-size: 1em;
+    }
+   
+    .fonte{
+       font-size:1em;
+    }
+   
+   .hex-grid{
+       display: flex;
+       flex-wrap: wrap;
+       gap: 15px;
+       justify-content: center;
+       flex: 1;
+   }
+   
+   .hex{
+       width: 160px;
+       height: 140px;
+       clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+       overflow: hidden;
+       background-color: #ccc;
+       position: relative;
+       
+   }
+   
+   .hex img{
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+   }  
+   
+   .centraliza{
+       text-align: center;
+       color: #dbdbdb;/*050011*/
+       font-size: 3.5em;
+   }
+
+   .centraliza-h3{
+    text-align: center;
+       color: #f0f0f0;/*070016*/
+       font-size: 1.7em; 
+   }
+   
+   #acao .container {
+       display: grid; 
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+       text-align: center;
+       padding: 50px 0; 
+   }
+   
+   #acao .item {
+       background-color: #1b1b1b; 
+       border: 1px solid #060507;  
+       padding: 20px;
+       box-shadow: 0 4px 8px #000000; 
+       transition: transform 0.2s ease, box-shadow 0.2s ease; 
+       color: #dbdbdb;
+       cursor: pointer; 
+       margin: 7px;
+   }
+   
+   #acao .item:hover {
+       transform: translateY(-5px); 
+       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+   }
+   
+   #acao .item:active {
+       transform: scale(0.98); 
+       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15); 
+   }
+
+   #acao .item p {
+       margin-top: 15px; 
+       font-size: 1.2em; 
+       color: #f0f0f0;
+       text-align: center;
+   }
+   
+   #acao .imagem img {
+       width: 100%; 
+       max-width: 500px; 
+       height: auto;
+       margin-bottom: 10px; 
+   }
+   
+   
+   .modal {
+       background: 1b1b1b;
+       padding: 20px;
+       border-radius: 12px;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+       margin: auto;    
+       text-align: justify; 
+     } 
+   
+     .btn {
+       display: inline-block;
+       margin-top: 15px;
+       padding: 10px 20px;
+       background: #832323;
+       color: #ede8ff;
+       text-decoration: none;
+       border-radius: 6px;
+       cursor: pointer;
+     }
+   
+     
+   
+     .modal {
+       margin-top: 50px;
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       width: 100vw;
+       height: 100vh;
+       background: rgba(0, 0, 0, 0.6);
+       display: none;
+       justify-content: center;
+       align-items: center;
+     }
+   
+     .modal:target {
+       display: flex;
+     }
+   
+   .modal-content {
+       max-height: 90vh;
+       overflow-y: auto; 
+       background: white;
+       padding: 30px;
+       border-radius: 10px;
+       max-width: 600px;
+       text-align: justify;
+       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+       
+     }
+   
+     .modal-content h4{
+       margin-top: 2%;
+       font-size: 1.1rem;
+       margin-bottom: 2%;
+      
+     }
+   
+     .listacard{
+       margin-top: 1%;
+       margin-left: 10%;
+     }
+   
+     .modal-content h3{
+       margin-top: 2%;
+       margin-bottom: 2%;
+       font-size: 1.4rem;
+       color: #000000;
+     }
+   
+     .close-btn {
+       margin-top: 20px;
+       display: inline-block;
+       padding: 8px 16px;
+       background: #dc3545;
+       color: white;
+       border-radius: 6px;
+       text-decoration: none;
+     }
+   
+   #galeria{
+    margin-top: 70px;
+   }
+
+   .galeria-h1{
+    text-align: center;
+    color: #dbdbdb;
+    font-size: 3.5em;
+   }
+
+   .galeria-h3{
+    text-align: center;
+    color: #f0f0f0;
+    font-size: 1.7em;
+     }
+
+    #galeria .container {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 15px;
+       justify-content: center;
+       flex: 1;
+   }
+   
+   
+   .galeriahex{
+       width: 260px;
+       height: 180px;
+       padding: 4px;
+       overflow: hidden;
+       background-color: #1b1b1b;
+       position: relative;
+       box-shadow: 0 4px 8px #000000;
+   }
+
+   .galeriahex img{
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+   }
+   
+   #tabela{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    flex: 1;
+   }
+
+   table, th, td {
+    border: 1px solid #f0f0f0;
+    border-collapse: collapse;
+    box-shadow: 0 4px 10px rgb(0, 0, 0);
+color: #f0f0f0;
+margin: 50px;
+padding: 1px;
+justify-content: center;}
+
+th, td{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    padding: 10px;
+
+}
+
+th{
+background-color: #832323;
+}
+   
+footer{
+    background-color: #111111;
+    padding: 10px;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+   @media (max-width:675px){
+       header .container, .sobre-container{
+           flex-direction: column;
+           text-align: center;        
+       }
+   
+       nav ul{
+           margin-top: 10px;
+           flex-direction: column;        
+       }
+       
+       .banner{
+           margin-top: 160px;
+       }
+       section{
+           scroll-margin-top: 200px;
+       }
+   
+       .modal{
+           margin-top: 100px;
+       } 
+       
+       .modal-content{
+           max-height: 60vh;
+       } 
+
+       
+   }
