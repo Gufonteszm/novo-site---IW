@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verdade ou Mentira - Ghost of Tsushima</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+        }
+        .statement {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .btn:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .next-btn {
+            background-color: #008CBA;
+        }
+        .next-btn:hover {
+            background-color: #007B9E;
+        }
+        .end-btns {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .end-btns button {
+            margin: 0 10px;
+        }
+        .correct {
+            color: green;
+            font-size: 16px;
+        }
+        .incorrect {
+            color: red;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Verdade ou Mentira - Ghost of Tsushima</h1>
+    <div class="statement" id="statement"></div>
+    <button class="btn" id="trueBtn" onclick="checkAnswer(true)">Verdade</button>
+    <button class="btn" id="falseBtn" onclick="checkAnswer(false)">Mentira</button>
+    <div class="result" id="result"></div>
+    <button class="btn next-btn" id="nextBtn" onclick="nextStatement()" style="display:none;">Próxima Afirmação</button>
+    
+    <div class="end-btns" id="endBtns" style="display:none;">
+        <button class="btn" onclick="restartGame()">Reiniciar</button>
+        <button class="btn" onclick="goHome()">Voltar ao Início</button>
+    </div>
+</div>
+
+<script>
+    const statements = [
+        { text: "Jin Sakai é o protagonista de Ghost of Tsushima.", correct: true },
+        { text: "O jogo se passa em uma ilha fictícia no Japão.", correct: false },
+        { text: "Os Mongóis são os principais antagonistas do jogo.", correct: true },
+        { text: "O jogo é baseado em eventos reais da história do Japão feudal.", correct: true },
+        { text: "O protagonista, Jin Sakai, nunca usa uma máscara ao longo do jogo.", correct: false },
+        { text: "O jogo foi desenvolvido pela Sucker Punch Productions.", correct: true },
+        { text: "Em Ghost of Tsushima, o jogador pode montar cavalos e lutar com espadas.", correct: true },
+        { text: "O jogo apresenta apenas uma opção de dificuldade.", correct: false },
+        { text: "O modo 'Lenda' de Ghost of Tsushima é um modo multiplayer cooperativo.", correct: true },
+        { text: "O título do jogo se refere à ilha de Tsushima, onde ocorre a batalha entre samurais e mongóis.", correct: true },
+        { text: "Em Ghost of Tsushima, Jin Sakai busca vingança contra seu tio.", correct: false },
+        { text: "O jogo recebeu críticas negativas por sua jogabilidade repetitiva.", correct: false }
+    ];
+
+    let currentStatementIndex = 0;
+    let score = 0;
+
+    // Função para exibir a próxima afirmação
+    function nextStatement() {
+        document.getElementById("result").innerText = '';
+        document.getElementById("trueBtn").disabled = false;
+        document.getElementById("falseBtn").disabled = false;
+
+        if (currentStatementIndex < statements.length) {
+            const statement = statements[currentStatementIndex];
+            document.getElementById("statement").innerText = statement.text;
+            currentStatementIndex++;
+            document.getElementById("nextBtn").style.display = "none";
+        } else {
+            document.getElementById("statement").innerText = "Fim do jogo! Seu resultado final é: " + score + " pontos.";
+            document.getElementById("trueBtn").disabled = true;
+            document.getElementById("falseBtn").disabled = true;
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("endBtns").style.display = "flex";
+        }
+    }
+
+    // Função para checar a resposta
+    function checkAnswer(userAnswer) {
+        const currentStatement = statements[currentStatementIndex - 1];
+        const correctAnswer = currentStatement.correct;
+
+        if (userAnswer === correctAnswer) {
+            score++;
+            document.getElementById("result").innerText = "Você acertou!";
+            document.getElementById("result").classList.add("correct");
+            document.getElementById("result").classList.remove("incorrect");
+        } else {
+            document.getElementById("result").innerText = "Você errou!";
+            document.getElementById("result").classList.add("incorrect");
+            document.getElementById("result").classList.remove("correct");
+        }
+
+        document.getElementById("trueBtn").disabled = true;
+        document.getElementById("falseBtn").disabled = true;
+        document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    // Função para reiniciar o jogo
+    function restartGame() {
+        currentStatementIndex = 0;
+        score = 0;
+        document.getElementById("result").innerText = '';
+        document.getElementById("endBtns").style.display = "none";
+        document.getElementById("trueBtn").disabled = false;
+        document.getElementById("falseBtn").disabled = false;
+        nextStatement();
+    }
+
+    // Função para voltar ao início do site
+    function goHome() {
+        window.location.href = "file:///C:/Users/LAB4/Downloads/novo-site---IW/index.html#contato"; // Altere para o seu link
+    }
+
+    // Inicializa o jogo
+    nextStatement();
+</script>
+
+</body>
+</html>
