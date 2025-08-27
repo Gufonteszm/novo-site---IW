@@ -3,175 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verdade ou Mentira - Ghost of Tsushima</title>
+    <title>Jogo: Ghost of Tsushima</title>
     <style>
+        /* Estilos gerais */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #1f1f1f;
+            color: white;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: white;
+            overflow-y: auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-container {
             text-align: center;
-            max-width: 500px;
             width: 100%;
+            max-width: 900px;
         }
+
         h1 {
-            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
         }
-        .statement {
-            font-size: 20px;
-            margin: 20px 0;
-        }
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+
+        /* Estilo do botão "Início" */
+        .start-button {
             padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
+            background-color: #4e5d5a;
+            border: none;
             border-radius: 5px;
+            color: white;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            margin-bottom: 20px;
         }
-        .btn:hover {
-            background-color: #45a049;
+
+        .start-button:hover {
+            background-color: #5a7b8a;
         }
-        .btn:disabled {
-            background-color: #ddd;
-            cursor: not-allowed;
+
+        /* Estilo da seção de perguntas */
+        .question-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 0 auto;
+            margin-bottom: 20px;
         }
-        .result {
-            font-size: 18px;
-            margin-top: 20px;
+
+        .question {
+            margin-bottom: 40px;
+            position: relative;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
         }
-        .next-btn {
-            background-color: #008CBA;
-        }
-        .next-btn:hover {
-            background-color: #007B9E;
-        }
-        .end-btns {
+
+        /* Estilo das caixas de resposta */
+        .drop-box {
+            width: 100%;
+            height: 50px;
+            border: 2px dashed #4e5d5a;
+            border-radius: 5px;
+            margin: 10px 0;
+            position: relative;
+            background-color: transparent;
             display: flex;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .drop-box.correct {
+            border-color: green;
+        }
+
+        .drop-box.incorrect {
+            border-color: red;
+        }
+
+        /* Estilo das respostas */
+        .answer {
+            width: 100%;
+            max-width: 200px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #4e5d5a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .answer:hover {
+            background-color: #5a7b8a;
+        }
+
+        .answer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
-        .end-btns button {
-            margin: 0 10px;
+
+        /* Estilo do feedback */
+        .feedback {
+            margin-top: 20px;
+            font-size: 1.2rem;
         }
-        .correct {
+
+        .feedback.correct {
             color: green;
-            font-size: 16px;
         }
-        .incorrect {
+
+        .feedback.incorrect {
             color: red;
-            font-size: 16px;
+        }
+
+        /* Media queries para telas menores */
+        @media (max-width: 768px) {
+            .question-container {
+                grid-template-columns: 1fr;
+            }
+
+            .start-button {
+                width: 100%;
+            }
+
+            .answer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Para telas muito pequenas */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .question-container {
+                grid-template-columns: 1fr;
+            }
+
+            .drop-box {
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .answer {
+                font-size: 0.9rem;
+                max-width: 180px;
+                width: 100%;
+            }
+
+            .answer-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="game-container">
+        <h1>Jogo: Ghost of Tsushima</h1>
+        
+        <!-- Botão para ir para o "Início" -->
+        <button class="start-button" onclick="goToInicio()">Início</button>
+        
+        <div class="question-container">
+            <div class="question" id="question-1">
+                <h2>Quem é o protagonista principal?</h2>
+                <div class="drop-box" id="box-1" ondrop="drop(event, 'box-1')" ondragover="dragOver(event)"></div>
+            </div>
+            <div class="question" id="question-2">
+                <h2>Qual é a principal habilidade de Jin?</h2>
+                <div class="drop-box" id="box-2" ondrop="drop(event, 'box-2')" ondragover="dragOver(event)"></div>
+            </div>
+            <div class="question" id="question-3">
+                <h2>Qual é o nome do vilão principal?</h2>
+                <div class="drop-box" id="box-3" ondrop="drop(event, 'box-3')" ondragover="dragOver(event)"></div>
+            </div>
+            <div class="question" id="question-4">
+                <h2>Em qual ilha o jogo se passa?</h2>
+                <div class="drop-box" id="box-4" ondrop="drop(event, 'box-4')" ondragover="dragOver(event)"></div>
+            </div>
+        </div>
 
-<div class="container">
-    <h1>Verdade ou Mentira - Ghost of Tsushima</h1>
-    <div class="statement" id="statement"></div>
-    <button class="btn" id="trueBtn" onclick="checkAnswer(true)">Verdade</button>
-    <button class="btn" id="falseBtn" onclick="checkAnswer(false)">Mentira</button>
-    <div class="result" id="result"></div>
-    <button class="btn next-btn" id="nextBtn" onclick="nextStatement()" style="display:none;">Próxima Afirmação</button>
-    
-    <div class="end-btns" id="endBtns" style="display:none;">
-        <button class="btn" onclick="restartGame()">Reiniciar</button>
-        <button class="btn" onclick="goHome()">Voltar ao Início</button>
+        <div class="answer-container" id="answers">
+            <button class="answer" draggable="true" id="answer-1" ondragstart="dragStart(event)">Jin Sakai</button>
+            <button class="answer" draggable="true" id="answer-2" ondragstart="dragStart(event)">Khotun Khan</button>
+            <button class="answer" draggable="true" id="answer-3" ondragstart="dragStart(event)">Ryūzō</button>
+            <button class="answer" draggable="true" id="answer-4" ondragstart="dragStart(event)">Kenji</button>
+            <button class="answer" draggable="true" id="answer-5" ondragstart="dragStart(event)">Ninjutsu</button>
+            <button class="answer" draggable="true" id="answer-6" ondragstart="dragStart(event)">Combate com Katana</button>
+            <button class="answer" draggable="true" id="answer-7" ondragstart="dragStart(event)">Arco e Flecha</button>
+            <button class="answer" draggable="true" id="answer-8" ondragstart="dragStart(event)">Invisibilidade</button>
+            <button class="answer" draggable="true" id="answer-9" ondragstart="dragStart(event)">Khotun Khan</button>
+            <button class="answer" draggable="true" id="answer-10" ondragstart="dragStart(event)">Hanzo</button>
+            <button class="answer" draggable="true" id="answer-11" ondragstart="dragStart(event)">Tengu</button>
+            <button class="answer" draggable="true" id="answer-12" ondragstart="dragStart(event)">Okami</button>
+            <button class="answer" draggable="true" id="answer-13" ondragstart="dragStart(event)">Tsushima</button>
+            <button class="answer" draggable="true" id="answer-14" ondragstart="dragStart(event)">Kyushu</button>
+            <button class="answer" draggable="true" id="answer-15" ondragstart="dragStart(event)">Honshu</button>
+            <button class="answer" draggable="true" id="answer-16" ondragstart="dragStart(event)">Shikoku</button>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
     </div>
-</div>
 
-<script>
-    const statements = [
-        { text: "Jin Sakai é o protagonista de Ghost of Tsushima.", correct: true },
-        { text: "O jogo se passa em uma ilha fictícia no Japão.", correct: false },
-        { text: "Os Mongóis são os principais antagonistas do jogo.", correct: true },
-        { text: "O jogo é baseado em eventos reais da história do Japão feudal.", correct: true },
-        { text: "O protagonista, Jin Sakai, nunca usa uma máscara ao longo do jogo.", correct: false },
-        { text: "O jogo foi desenvolvido pela Sucker Punch Productions.", correct: true },
-        { text: "Em Ghost of Tsushima, o jogador pode montar cavalos e lutar com espadas.", correct: true },
-        { text: "O jogo apresenta apenas uma opção de dificuldade.", correct: false },
-        { text: "O modo 'Lenda' de Ghost of Tsushima é um modo multiplayer cooperativo.", correct: true },
-        { text: "O título do jogo se refere à ilha de Tsushima, onde ocorre a batalha entre samurais e mongóis.", correct: true },
-        { text: "Em Ghost of Tsushima, Jin Sakai busca vingança contra seu tio.", correct: false },
-        { text: "O jogo recebeu críticas negativas por sua jogabilidade repetitiva.", correct: false }
-    ];
-
-    let currentStatementIndex = 0;
-    let score = 0;
-
-    // Função para exibir a próxima afirmação
-    function nextStatement() {
-        document.getElementById("result").innerText = '';
-        document.getElementById("trueBtn").disabled = false;
-        document.getElementById("falseBtn").disabled = false;
-
-        if (currentStatementIndex < statements.length) {
-            const statement = statements[currentStatementIndex];
-            document.getElementById("statement").innerText = statement.text;
-            currentStatementIndex++;
-            document.getElementById("nextBtn").style.display = "none";
-        } else {
-            document.getElementById("statement").innerText = "Fim do jogo! Seu resultado final é: " + score + " pontos.";
-            document.getElementById("trueBtn").disabled = true;
-            document.getElementById("falseBtn").disabled = true;
-            document.getElementById("nextBtn").style.display = "none";
-            document.getElementById("endBtns").style.display = "flex";
-        }
-    }
-
-    // Função para checar a resposta
-    function checkAnswer(userAnswer) {
-        const currentStatement = statements[currentStatementIndex - 1];
-        const correctAnswer = currentStatement.correct;
-
-        if (userAnswer === correctAnswer) {
-            score++;
-            document.getElementById("result").innerText = "Você acertou!";
-            document.getElementById("result").classList.add("correct");
-            document.getElementById("result").classList.remove("incorrect");
-        } else {
-            document.getElementById("result").innerText = "Você errou!";
-            document.getElementById("result").classList.add("incorrect");
-            document.getElementById("result").classList.remove("correct");
+    <script>
+        // Função para redirecionar para a página de início
+        function goToInicio() {
+            window.location.href = "file:///C:/Users/LAB4/Downloads/novo-site---IW/index.html";
         }
 
-        document.getElementById("trueBtn").disabled = true;
-        document.getElementById("falseBtn").disabled = true;
-        document.getElementById("nextBtn").style.display = "inline-block";
-    }
+        // Funções relacionadas ao jogo (drag and drop)
+        const correctAnswers = {
+            "box-1": "Jin Sakai",
+            "box-2": "Combate com Katana",
+            "box-3": "Khotun Khan",
+            "box-4": "Tsushima"
+        };
 
-    // Função para reiniciar o jogo
-    function restartGame() {
-        currentStatementIndex = 0;
-        score = 0;
-        document.getElementById("result").innerText = '';
-        document.getElementById("endBtns").style.display = "none";
-        document.getElementById("trueBtn").disabled = false;
-        document.getElementById("falseBtn").disabled = false;
-        nextStatement();
-    }
+        let draggedElement = null;
 
-    // Função para voltar ao início do site
-    function goHome() {
-        window.location.href = "file:///C:/Users/LAB4/Downloads/novo-site---IW/index.html#contato"; // Altere para o seu link
-    }
-
-    // Inicializa o jogo
-    nextStatement();
-</script>
-
-</body>
-</html>
+       
