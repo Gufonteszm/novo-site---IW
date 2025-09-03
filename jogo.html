@@ -1,240 +1,324 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo: Ghost of Tsushima</title>
-    <style>
-        /* Estilos gerais */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1f1f1f;
-            color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            overflow-y: auto;
-            padding: 20px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo: Ghost of Tsushima</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url("IMG/joséotario.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
 
-        .game-container {
-            text-align: center;
-            width: 100%;
-            max-width: 900px;
-        }
+    h1 {
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px #000;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
+    .start-button {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #832323;
+      border: none;
+      border-radius: 5px;
+      color: #ffffff;
+      cursor: pointer;
+    }
 
-        /* Estilo do botão "Início" */
-        .start-button {
-            padding: 10px 20px;
-            background-color: #4e5d5a;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
+    .start-button:hover {
+      background-color: #a83232;
+    }
 
-        .start-button:hover {
-            background-color: #5a7b8a;
-        }
+    .question-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 20px;
+    }
 
-        /* Estilo da seção de perguntas */
-        .question-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 0 auto;
-            margin-bottom: 20px;
-        }
+    .question {
+      background-color: rgba(27, 27, 27, 0.6);
+      padding: 20px;
+      border: 1px solid #060507a8;
+     
+      
+      display: grid;
+      grid-template-rows: auto 80px;
+      align-items: center;
+      justify-items: center;
+    }
 
-        .question {
-            margin-bottom: 40px;
-            position: relative;
-            padding: 20px;
-            background-color: #333;
-            border-radius: 10px;
-        }
+    .question h2 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
 
-        /* Estilo das caixas de resposta */
-        .drop-box {
-            width: 100%;
-            height: 50px;
-            border: 2px dashed #4e5d5a;
-            border-radius: 5px;
-            margin: 10px 0;
-            position: relative;
-            background-color: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 1rem;
-            color: white;
-        }
+    .drop-box {
+      width: 250px;
+      height: 60px;
+      margin-top: 10px;
+      border: 1px solid #060507;
+      border-radius: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem;
+      color: #ffffff;
+      background-color: #1b1b1b; /* 60% transparência */
+      box-shadow: 0 4px 8px #000000;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
 
-        .drop-box.correct {
-            border-color: green;
-        }
+    .drop-box.correct {
+      border-color: green;
+    }
 
-        .drop-box.incorrect {
-            border-color: red;
-        }
+    .drop-box.incorrect {
+      border-color: red;
+    }
 
-        /* Estilo das respostas */
-        .answer {
-            width: 100%;
-            max-width: 200px;
-            padding: 10px;
-            margin: 10px;
-            background-color: #4e5d5a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 1rem;
-            position: relative;
-        }
+    .drop-box .answer-in-box {
+      background: transparent;
+      font-size: 1.4rem;
+      cursor: default;
+      color: #ffffff;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      border: none;
+    }
 
-        .answer:hover {
-            background-color: #5a7b8a;
-        }
+    .answer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 20px;
+    }
 
-        .answer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
+    .answer {
+      background-color: #832323;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: move;
+      text-align: center;
+      color: #ffffff;
+      user-select: none;
+      font-size: 1.1rem;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        /* Estilo do feedback */
-        .feedback {
-            margin-top: 20px;
-            font-size: 1.2rem;
-        }
+    .answer:hover {
+      background-color: #a83232;
+    }
 
-        .feedback.correct {
-            color: green;
-        }
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
 
-        .feedback.incorrect {
-            color: red;
-        }
+    #modal-content {
+      background-color: #222;
+      padding: 30px 40px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+      max-width: 300px;
+      box-shadow: 0 0 10px #000;
+    }
 
-        /* Media queries para telas menores */
-        @media (max-width: 768px) {
-            .question-container {
-                grid-template-columns: 1fr;
-            }
+    #modal-content h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
 
-            .start-button {
-                width: 100%;
-            }
+    #modal-content button {
+      padding: 10px 20px;
+      background-color: #832323;
+      border: none;
+      border-radius: 5px;
+      color: #ffffff;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 250ms ease-in-out;
+    }
 
-            .answer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+    #modal-content button.visible {
+      opacity: 1;
+    }
 
-        /* Para telas muito pequenas */
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
+    #modal-content button:hover {
+      background-color: #a83232;
+    }
 
-            .question-container {
-                grid-template-columns: 1fr;
-            }
+    @media (max-width: 768px) {
+      .question-container {
+        grid-template-columns: 1fr;
+      }
+      .answer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
-            .drop-box {
-                height: 40px;
-                font-size: 0.9rem;
-            }
-
-            .answer {
-                font-size: 0.9rem;
-                max-width: 180px;
-                width: 100%;
-            }
-
-            .answer-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    @media (max-width: 480px) {
+      .answer-container {
+        grid-template-columns: 1fr;
+      }
+      .drop-box {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Jogo: Ghost of Tsushima</h1>
-        
-        <!-- Botão para ir para o "Início" -->
-        <button class="start-button" onclick="goToInicio()">Início</button>
-        
-        <div class="question-container">
-            <div class="question" id="question-1">
-                <h2>Quem é o protagonista principal?</h2>
-                <div class="drop-box" id="box-1" ondrop="drop(event, 'box-1')" ondragover="dragOver(event)"></div>
-            </div>
-            <div class="question" id="question-2">
-                <h2>Qual é a principal habilidade de Jin?</h2>
-                <div class="drop-box" id="box-2" ondrop="drop(event, 'box-2')" ondragover="dragOver(event)"></div>
-            </div>
-            <div class="question" id="question-3">
-                <h2>Qual é o nome do vilão principal?</h2>
-                <div class="drop-box" id="box-3" ondrop="drop(event, 'box-3')" ondragover="dragOver(event)"></div>
-            </div>
-            <div class="question" id="question-4">
-                <h2>Em qual ilha o jogo se passa?</h2>
-                <div class="drop-box" id="box-4" ondrop="drop(event, 'box-4')" ondragover="dragOver(event)"></div>
-            </div>
-        </div>
+  <h1>Jogo: Ghost of Tsushima</h1>
 
-        <div class="answer-container" id="answers">
-            <button class="answer" draggable="true" id="answer-1" ondragstart="dragStart(event)">Jin Sakai</button>
-            <button class="answer" draggable="true" id="answer-2" ondragstart="dragStart(event)">Khotun Khan</button>
-            <button class="answer" draggable="true" id="answer-3" ondragstart="dragStart(event)">Ryūzō</button>
-            <button class="answer" draggable="true" id="answer-4" ondragstart="dragStart(event)">Kenji</button>
-            <button class="answer" draggable="true" id="answer-5" ondragstart="dragStart(event)">Ninjutsu</button>
-            <button class="answer" draggable="true" id="answer-6" ondragstart="dragStart(event)">Combate com Katana</button>
-            <button class="answer" draggable="true" id="answer-7" ondragstart="dragStart(event)">Arco e Flecha</button>
-            <button class="answer" draggable="true" id="answer-8" ondragstart="dragStart(event)">Invisibilidade</button>
-            <button class="answer" draggable="true" id="answer-9" ondragstart="dragStart(event)">Khotun Khan</button>
-            <button class="answer" draggable="true" id="answer-10" ondragstart="dragStart(event)">Hanzo</button>
-            <button class="answer" draggable="true" id="answer-11" ondragstart="dragStart(event)">Tengu</button>
-            <button class="answer" draggable="true" id="answer-12" ondragstart="dragStart(event)">Okami</button>
-            <button class="answer" draggable="true" id="answer-13" ondragstart="dragStart(event)">Tsushima</button>
-            <button class="answer" draggable="true" id="answer-14" ondragstart="dragStart(event)">Kyushu</button>
-            <button class="answer" draggable="true" id="answer-15" ondragstart="dragStart(event)">Honshu</button>
-            <button class="answer" draggable="true" id="answer-16" ondragstart="dragStart(event)">Shikoku</button>
-        </div>
+  <button class="start-button" onclick="goToInicio()">Início</button>
 
-        <div class="feedback" id="feedback"></div>
+  <div class="question-container">
+    <div class="question">
+      <h2>Quem é o protagonista principal?</h2>
+      <div class="drop-box" id="box-1" ondrop="drop(event)" ondragover="allowDrop(event)" data-answer="Jin Sakai"></div>
     </div>
+    <div class="question">
+      <h2>Qual é a principal habilidade de Jin?</h2>
+      <div class="drop-box" id="box-2" ondrop="drop(event)" ondragover="allowDrop(event)" data-answer="Combate com Katana"></div>
+    </div>
+    <div class="question">
+      <h2>Qual é o nome do vilão principal?</h2>
+      <div class="drop-box" id="box-3" ondrop="drop(event)" ondragover="allowDrop(event)" data-answer="Khotun Khan"></div>
+    </div>
+    <div class="question">
+      <h2>Em qual ilha o jogo se passa?</h2>
+      <div class="drop-box" id="box-4" ondrop="drop(event)" ondragover="allowDrop(event)" data-answer="Tsushima"></div>
+    </div>
+  </div>
 
-    <script>
-        // Função para redirecionar para a página de início
-        function goToInicio() {
-            window.location.href = "file:///C:/Users/LAB4/Downloads/novo-site---IW/index.html";
-        }
+  <div class="answer-container" id="answer-container">
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Jin Sakai">Jin Sakai</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Khotun Khan">Khotun Khan</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Ryūzō">Ryūzō</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Kenji">Kenji</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Ninjutsu">Ninjutsu</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Combate com Katana">Combate com Katana</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Arco e Flecha">Arco e Flecha</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Invisibilidade">Invisibilidade</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Tsushima">Tsushima</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Kyushu">Kyushu</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Honshu">Honshu</div>
+    <div class="answer" draggable="true" ondragstart="drag(event)" id="Shikoku">Shikoku</div>
+  </div>
 
-        // Funções relacionadas ao jogo (drag and drop)
-        const correctAnswers = {
-            "box-1": "Jin Sakai",
-            "box-2": "Combate com Katana",
-            "box-3": "Khotun Khan",
-            "box-4": "Tsushima"
-        };
+  <div id="modal">
+    <div id="modal-content">
+      <h2>Parabéns! Você acertou todas as respostas!</h2>
+      <button onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
 
-        let draggedElement = null;
+  <script>
+    function goToInicio() {
+      window.location.href = "index.html";
+    }
 
-       
+    let draggedId = null;
+
+    function drag(event) {
+      draggedId = event.target.id;
+    }
+
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+
+    function drop(event) {
+      event.preventDefault();
+      const dropBox = event.target.classList.contains('drop-box') ? event.target : event.target.closest('.drop-box');
+      if (!dropBox) return;
+      const answerContainer = document.getElementById('answer-container');
+      const draggedElement = document.getElementById(draggedId);
+      if (!draggedElement) return;
+
+      if (dropBox.firstChild) {
+        const oldAnswer = dropBox.firstChild;
+        oldAnswer.classList.remove('answer-in-box');
+        oldAnswer.classList.add('answer');
+        oldAnswer.setAttribute('draggable', 'true');
+        oldAnswer.style.cursor = 'move';
+        answerContainer.appendChild(oldAnswer);
+      }
+
+      dropBox.innerHTML = "";
+      dropBox.appendChild(draggedElement);
+      draggedElement.classList.remove('answer');
+      draggedElement.classList.add('answer-in-box');
+      draggedElement.setAttribute('draggable', 'false');
+      draggedElement.style.cursor = 'default';
+
+      const expected = dropBox.dataset.answer;
+      const given = draggedElement.id;
+      dropBox.classList.remove('correct', 'incorrect');
+      if (expected === given) {
+        dropBox.classList.add('correct');
+      } else {
+        dropBox.classList.add('incorrect');
+      }
+      checkAllCorrect();
+    }
+
+    function checkAllCorrect() {
+      const boxes = document.querySelectorAll('.drop-box');
+      for (let box of boxes) {
+        if (!box.classList.contains('correct')) return;
+      }
+      showModal();
+    }
+
+    function showModal() {
+      const modal = document.getElementById('modal');
+      const button = modal.querySelector("button");
+      modal.style.display = 'flex';
+      requestAnimationFrame(() => {
+        button.classList.add("visible");
+      });
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      const button = modal.querySelector("button");
+      button.classList.remove("visible");
+      setTimeout(() => { modal.style.display = 'none'; }, 250);
+    }
+  </script>
+</body>
+</html>
